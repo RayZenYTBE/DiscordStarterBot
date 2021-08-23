@@ -1,0 +1,35 @@
+Tutorial :
+
+1. First, go to Lock button a.k.a Secret Environment Variables and create a secret base on the info below :
+Key : TOKEN
+Value : 'Your Bot Token'
+
+2. Customize your Bot Prefix, Basic Text Command and its Output at index.js file. 
+
+3. Go to Shell and type "npm i discord.js@12.5.3" and wait until the shell saying 'found 0 vulnerabilities'.
+
+4. Want to add new command? Add this to your index.js file!
+
+
+client.on('message', (message) => {
+    //stop code execution if message is received in DMs
+    if (!message.guild) return;
+
+    //get the prefix for the discord server
+    let guildPrefix = prefix.getPrefix(message.guild.id);
+
+    //set prefix to the default prefix if there isn't one
+    if (!guildPrefix) guildPrefix = defaultPrefix;
+
+    //rest of the message event
+    let args = message.content.slice(guildPrefix.length).split(' ');
+    if (!message.content.startsWith(guildPrefix)) return;
+    if (args[0].toLowerCase() === 'Command Here!') {
+        return message.channel.send('Command Output Here!');//Replace this text to your Command and your Command Output!
+    };
+});
+
+5. Run the bot!
+
+6. If a new section appear and its saying It's Working!!!, copy the link above it and go to uptimerobot.com and login/signup. After you finished logging in, click Create New Monitor, choose http(s) and name it whatever you want. Paste the link on the https value and click Create. Go to the monitor that you've created before and scroll down. See it saying No Data? Refresh it until it showing Up
+Congrats! Your bot is now running 24/7!
